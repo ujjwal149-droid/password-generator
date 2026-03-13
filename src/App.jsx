@@ -15,11 +15,15 @@ function App() {
   const defaultLength = 8;
   const [length, setLength] = useState(defaultLength);
   const [history, setHistory] = useState([]);
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState();
 
   // generate the password
   const generatePassword = () => {
     
+  }
+
+  const copyPassword = () => {
+    navigator.clipboard.writeText(password)
   }
 
   return (
@@ -33,7 +37,8 @@ function App() {
         {/* Generation area */}
         <div className="w-full lg:w-[45%] flex flex-col gap-y-6">
           <PasswordInput value={"1a4Txe3m*%Qm^vdXs!"} onRefresh={setPassword}/>
-          <Chip />
+          {/* Copy button */}
+          <Chip onCopy={copyPassword}/>
 
           {/* Slider */}
           <Slider defaultValue={defaultLength} onChange={setLength}/>
