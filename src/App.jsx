@@ -119,9 +119,12 @@ function App() {
             Password History
           </h2>
           <div className="flex flex-col-reverse gap-y-4 sm:gap-y-5">
-            <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
+            {history.length && <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
               Clear history
-            </p>
+            </p>}
+            {!history.length && <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
+              No data
+            </p>}
             {history.map((record) => (
               <PasswordRecord
                 key={record.id}
@@ -140,7 +143,7 @@ function App() {
         </span>
         <span className="hidden sm:inline opacity-30">|</span>
         <a
-          href="https://github.com"
+          href="https://github.com/ujjwal149-droid"
           target="_blank"
           rel="noopener noreferrer"
           className="
