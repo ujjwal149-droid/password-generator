@@ -15,11 +15,29 @@ function App() {
   const defaultLength = 8;
   const [length, setLength] = useState(defaultLength);
   const [history, setHistory] = useState([]);
-  const [password, setPassword] = useState();
+  const [password, setPassword] = useState("");
 
   // generate the password
   const generatePassword = () => {
-    
+    if(!(numbersAllowed || symbolsAllowed || uppercaseAllowed || lowercaseAllowed)) {
+      alert("You must allow atleast one type of characters!")
+      return;
+    }
+    let pass="";
+    let possibleChars = "";
+
+    if(numbersAllowed) possibleChars+="1234567890";
+    if(symbolsAllowed) possibleChars+="!@#$%^&*()~`?><";
+    if(uppercaseAllowed) possibleChars+="QWERTYUIOPASDFGHJKLZXCVBNM";
+    if(lowercaseAllowed) possibleChars+="qwertyupioasdfghjklzxcvbnm";
+
+    // pick random char from possible chars
+    for (let i = 0; i < length; i++) {
+      let c = possibleChars[Math.floor(Math.random() * possibleChars.length )]
+      pass+=c;
+    }
+
+    setPassword(pass);
   }
 
   const copyPassword = () => {
@@ -36,7 +54,7 @@ function App() {
 
         {/* Generation area */}
         <div className="w-full lg:w-[45%] flex flex-col gap-y-6">
-          <PasswordInput value={"1a4Txe3m*%Qm^vdXs!"} onRefresh={setPassword}/>
+          <PasswordInput value={password} onRefresh={generatePassword}/>
           {/* Copy button */}
           <Chip onCopy={copyPassword}/>
 
