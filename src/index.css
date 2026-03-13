@@ -1,1 +1,61 @@
+@import url(https://fonts.googleapis.com/css?family=Tomorrow:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Barlow:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
 @import "tailwindcss";
+
+:root {
+
+}
+
+body {
+    font-family: "Tomorrow";
+    background: #000;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+p, label {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 3.2px;
+}
+
+button {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 150%;
+    letter-spacing: 3.2px;
+    text-transform: uppercase;
+}
+
+.caption {
+    color: #BBB;
+    font-family: "Barlow";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+}

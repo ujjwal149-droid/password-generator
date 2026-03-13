@@ -1,12 +1,93 @@
-import './App.css'
+import "./App.css";
+import Checkbox from "./components/Checkbox";
+import Chip from "./components/Chip";
+import PasswordInput from "./components/PasswordInput";
+import PasswordRecord from "./components/PasswordRecord";
+import Slider from "./components/Slider";
 
 function App() {
-
   return (
-    <>
-      
-    </>
-  )
+    <div className="min-h-screen py-10 px-6 md:px-10 w-full max-w-7xl mx-auto flex flex-col justify-center">
+      <h1 className="text-[#F8EF00] mb-10 md:mb-16 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+        PASSWORD <br /> GENERATOR
+      </h1>
+
+      <div className="flex flex-col gap-y-12 lg:flex-row justify-between lg:gap-x-30">
+
+        {/* Generation area */}
+        <div className="w-full lg:w-[45%] flex flex-col gap-y-6">
+          <PasswordInput value={"1a4Txe3m*%Qm^vdXs!"} />
+          <Chip />
+
+          {/* Slider */}
+          <Slider/>
+
+          {/* Letter Options */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5">
+            <Checkbox text={"Uppercase letters"} id="uppercase" />
+            <Checkbox text={"Lowercase letters"} id="lowercase" />
+            <Checkbox text={"Numbers"} id="numbers" />
+            <Checkbox text={"Symbols"} id="symbols" />
+          </div>
+        </div>
+
+        {/* History area */}
+        <div className="w-full lg:w-[45%]">
+          <h2 className="text-white mb-6 md:mb-8 text-lg sm:text-xl font-bold tracking-widest uppercase">
+            Password History
+          </h2>
+          <div className="flex flex-col gap-y-4 sm:gap-y-5">
+            <PasswordRecord
+              value={"^d3>~9YDA8s}cWN9L_P^"}
+              date={"10/31/2022, 23:57:38"}
+            />
+            <PasswordRecord
+              value={"^d3>~9YDA8s}cWN9L_P^"}
+              date={"10/31/2022, 23:57:38"}
+            />
+            <PasswordRecord
+              value={"^d3>~9YDA8s}cWN9L_P^"}
+              date={"10/31/2022, 23:57:38"}
+            />
+            <PasswordRecord
+              value={"^d3>~9YDA8s}cWN9L_P^"}
+              date={"10/31/2022, 23:57:38"}
+            />
+            <PasswordRecord
+              value={"^d3>~9YDA8s}cWN9L_P^"}
+              date={"10/31/2022, 23:57:38"}
+            />
+            <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
+              Clear history
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    <div className="mt-16 pt-6 border-t border-white/10 flex flex-wrap gap-4 justify-center sm:justify-start items-center text-xs text-[#FAFAFA] tracking-widest uppercase">
+      <span className="opacity-60 hover:opacity-100 transition-opacity duration-200">
+        Ujjawal Tyagi
+      </span>
+      <span className="hidden sm:inline opacity-30">|</span>
+      <a
+        href="https://github.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="
+          relative opacity-60 hover:opacity-100 hover:text-[#F8EF00]
+          transition-all duration-200
+          after:content-[''] after:absolute after:left-0 after:-bottom-0.5
+          after:w-0 after:h-px after:bg-[#F8EF00]
+          after:transition-all after:duration-300
+          hover:after:w-full
+        "
+      >
+        Github
+      </a>
+    </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
