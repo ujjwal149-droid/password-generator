@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 
-export default function PasswordRecord({ value, date }) {
+export default function PasswordRecord({ value, date, onCopy }) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = () => {
     if (copied) return
     navigator.clipboard.writeText(value).catch(() => {})
     setCopied(true)
+    onCopy?.()
     setTimeout(() => setCopied(false), 1500)
   }
 

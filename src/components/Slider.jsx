@@ -31,9 +31,9 @@ export default function Slider({ min = 4, max = 40, defaultValue, onChange }) {
         value={value}
         onChange={handleChange}
         className="w-full cursor-pointer appearance-none bg-transparent
-          [&::-webkit-slider-runnable-track]:h-[3px]
+          [&::-webkit-slider-runnable-track]:h-0.75
           [&::-webkit-slider-runnable-track]:bg-[#00F0FF]
-          [&::-moz-range-track]:h-[3px]
+          [&::-moz-range-track]:h-0.75
           [&::-moz-range-track]:bg-[#00F0FF]
           [&::-webkit-slider-thumb]:appearance-none
           [&::-webkit-slider-thumb]:h-5

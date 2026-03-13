@@ -64,8 +64,8 @@ function App() {
     console.log(history);
   };
 
-  const copyPassword = () => {
-    navigator.clipboard.writeText(password);
+  const copyPassword = (pass) => {
+    navigator.clipboard.writeText(pass);
   };
 
   return (
@@ -79,7 +79,7 @@ function App() {
         <div className="w-full lg:w-[45%] flex flex-col gap-y-6">
           <PasswordInput value={password} onRefresh={generatePassword} />
           {/* Copy button */}
-          <Chip onCopy={copyPassword} />
+          <Chip onCopy={() => copyPassword(password)} />
 
           {/* Slider */}
           <Slider defaultValue={defaultLength} onChange={setLength} />
@@ -119,7 +119,7 @@ function App() {
             Password History
           </h2>
           <div className="flex flex-col-reverse gap-y-4 sm:gap-y-5">
-            {history.length && <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
+            {history.length && <p onClick={() => setHistory([])} className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
               Clear history
             </p>}
             {!history.length && <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
@@ -130,6 +130,7 @@ function App() {
                 key={record.id}
                 value={record.password}
                 date={record.date}
+                onCopy={copyPassword(record.password)}
               />
             ))}
           </div>
