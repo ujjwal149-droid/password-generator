@@ -38,6 +38,14 @@ function App() {
     }
 
     setPassword(pass);
+    updateHistory(pass);
+  }
+
+  const updateHistory = (pass) => {
+    const newRecord = {id: Date.now(), password:pass, date: Date.now()}
+    setHistory(prev => [...prev,  newRecord].slice(-5));
+
+    console.log(history)
   }
 
   const copyPassword = () => {
@@ -75,27 +83,13 @@ function App() {
           <h2 className="text-white mb-6 md:mb-8 text-lg sm:text-xl font-bold tracking-widest uppercase">
             Password History
           </h2>
-          <div className="flex flex-col gap-y-4 sm:gap-y-5">
-            <PasswordRecord
-              value={"^d3>~9YDA8s}cWN9L_P^"}
-              date={"10/31/2022, 23:57:38"}
+          <div className="flex flex-col-reverse gap-y-4 sm:gap-y-5">
+            {history.map(record => (
+              <PasswordRecord key={record.id}
+              value={record.password}
+              date={record.date}
             />
-            <PasswordRecord
-              value={"^d3>~9YDA8s}cWN9L_P^"}
-              date={"10/31/2022, 23:57:38"}
-            />
-            <PasswordRecord
-              value={"^d3>~9YDA8s}cWN9L_P^"}
-              date={"10/31/2022, 23:57:38"}
-            />
-            <PasswordRecord
-              value={"^d3>~9YDA8s}cWN9L_P^"}
-              date={"10/31/2022, 23:57:38"}
-            />
-            <PasswordRecord
-              value={"^d3>~9YDA8s}cWN9L_P^"}
-              date={"10/31/2022, 23:57:38"}
-            />
+            ))}
             <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
               Clear history
             </p>

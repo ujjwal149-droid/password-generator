@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-export default function Slider({ min = 4, max = 80, defaultValue, onChange }) {
+export default function Slider({ min = 4, max = 40, defaultValue, onChange }) {
   const [value, setValue] = useState(defaultValue)
   const inputRef = useRef(null)
 
