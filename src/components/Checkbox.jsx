@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
-export default function CustomCheckbox({ text, id }) {
-  const [checked, setChecked] = useState(false);
+export default function CustomCheckbox({ text, id, onChange, isChecked }) {
+  const [checked, setChecked] = useState(isChecked);
+
+  const handleClick =  () => {
+    setChecked(!checked);
+    onChange?.();
+  }
 
   return (
     <div className="flex items-center gap-3">
@@ -9,7 +14,7 @@ export default function CustomCheckbox({ text, id }) {
         type="checkbox"
         id={id}
         checked={checked}
-        onChange={() => setChecked(!checked)}
+        onChange={handleClick}
         className="peer sr-only"
       />
       <label

@@ -1,3 +1,4 @@
+import React, {useState} from "react";
 import "./App.css";
 import Checkbox from "./components/Checkbox";
 import Chip from "./components/Chip";
@@ -5,7 +6,22 @@ import PasswordInput from "./components/PasswordInput";
 import PasswordRecord from "./components/PasswordRecord";
 import Slider from "./components/Slider";
 
+
 function App() {
+  const [numbersAllowed, setNumbersAllowed] = useState(false);
+  const [symbolsAllowed, setSymbolsAllowed] = useState(false);
+  const [lowercaseAllowed, setLowercaseAllowed] = useState(true);
+  const [uppercaseAllowed, setUppercaseAllowed] = useState(true);
+  const defaultLength = 8;
+  const [length, setLength] = useState(defaultLength);
+  const [history, setHistory] = useState([]);
+  const [password, setPassword] = useState("");
+
+  // generate the password
+  const generatePassword = () => {
+    
+  }
+
   return (
     <div className="min-h-screen py-10 px-6 md:px-10 w-full max-w-7xl mx-auto flex flex-col justify-center">
       <h1 className="text-[#F8EF00] mb-10 md:mb-16 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
@@ -16,18 +32,18 @@ function App() {
 
         {/* Generation area */}
         <div className="w-full lg:w-[45%] flex flex-col gap-y-6">
-          <PasswordInput value={"1a4Txe3m*%Qm^vdXs!"} />
+          <PasswordInput value={"1a4Txe3m*%Qm^vdXs!"} onRefresh={setPassword}/>
           <Chip />
 
           {/* Slider */}
-          <Slider/>
+          <Slider defaultValue={defaultLength} onChange={setLength}/>
 
           {/* Letter Options */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-5">
-            <Checkbox text={"Uppercase letters"} id="uppercase" />
-            <Checkbox text={"Lowercase letters"} id="lowercase" />
-            <Checkbox text={"Numbers"} id="numbers" />
-            <Checkbox text={"Symbols"} id="symbols" />
+            <Checkbox text={"Uppercase letters"} id="uppercase" onChange={() => setUppercaseAllowed(!uppercaseAllowed)} isChecked={uppercaseAllowed}/>
+            <Checkbox text={"Lowercase letters"} id="lowercase" onChange={() => setLowercaseAllowed(!lowercaseAllowed)} isChecked={lowercaseAllowed}/>
+            <Checkbox text={"Numbers"} id="numbers" onChange={() => setNumbersAllowed(!numbersAllowed)} isChecked={numbersAllowed}/>
+            <Checkbox text={"Symbols"} id="symbols" onChange={() => setSymbolsAllowed(!symbolsAllowed)} isChecked={symbolsAllowed}/>
           </div>
         </div>
 
@@ -65,6 +81,7 @@ function App() {
 
       </div>
 
+    {/* Footer */}
     <div className="mt-16 pt-6 border-t border-white/10 flex flex-wrap gap-4 justify-center sm:justify-start items-center text-xs text-[#FAFAFA] tracking-widest uppercase">
       <span className="opacity-60 hover:opacity-100 transition-opacity duration-200">
         Ujjawal Tyagi

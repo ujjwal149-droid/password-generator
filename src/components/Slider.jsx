@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 
-export default function Slider({ min = 4, max = 80, defaultValue = 18, onChange }) {
+export default function Slider({ min = 4, max = 80, defaultValue, onChange }) {
   const [value, setValue] = useState(defaultValue)
   const inputRef = useRef(null)
 
@@ -9,6 +9,7 @@ export default function Slider({ min = 4, max = 80, defaultValue = 18, onChange 
     setValue(val)
     onChange?.(val)
   }
+
 
   const percent = ((value - min) / (max - min)) * 100
 

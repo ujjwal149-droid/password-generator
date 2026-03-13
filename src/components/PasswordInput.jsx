@@ -1,8 +1,15 @@
 import React, { useState } from 'react'
  
-export default function PasswordInput({ value }) {
+export default function PasswordInput({ value, onRefresh}) {
   const [spinning, setSpinning] = useState(false);
 
+  const handleRefresh = () => {
+    if (spinning) return
+    setSpinning(true)
+    onRefresh?.()
+    setTimeout(() => setSpinning(false), 600)
+  }
+ 
   return (
     <div className='bg-[#001819] border-2 border-[#00F0FF] text-[#00F0FF] p-5 flex justify-between w-full'>
       <input
@@ -15,6 +22,7 @@ export default function PasswordInput({ value }) {
         src="/refresh-icon.svg"
         alt="Refresh"
         className={`cursor-pointer transition-transform ${spinning ? 'animate-spin' : 'hover:rotate-45'}`}
+        onClick={handleRefresh}
         style={{ transitionDuration: '200ms' }}
       />
     </div>
