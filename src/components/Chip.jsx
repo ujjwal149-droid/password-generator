@@ -14,8 +14,8 @@ export default function Chip({ onCopy }) {
     <div
       onClick={handleCopy}
       className={`
-        mt-4 flex justify-between items-center min-w-[300px] w-[90%] md:w-[50%]
-        bg-[#F8EF00] py-5 px-10 cursor-pointer select-none
+        mt-0 md:mt-4 flex justify-between items-center min-w-[300px] w-[90%] md:w-[50%]
+        bg-[#F8EF00] py-2 md:py-5 px-10 cursor-pointer select-none
         transition-all duration-150
         hover:brightness-110 hover:scale-[1.02]
         active:scale-[0.97] active:brightness-95

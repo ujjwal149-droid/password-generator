@@ -70,7 +70,7 @@ function App() {
 
   return (
     <div className="min-h-screen py-10 px-6 md:px-10 w-full max-w-7xl mx-auto flex flex-col justify-center">
-      <h1 className="text-[#F8EF00] mb-10 md:mb-16 text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+      <h1 className="text-[#F8EF00] mb-10 md:mb-16 text-[30px] text-center md:text-left md:text-[36px] lg:text-[40px] font-black tracking-tight leading-tight">
         PASSWORD <br /> GENERATOR
       </h1>
 

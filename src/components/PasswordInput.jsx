@@ -11,11 +11,11 @@ export default function PasswordInput({ value, onRefresh}) {
   }
  
   return (
-    <div className='bg-[#001819] border-2 border-[#00F0FF] text-[#00F0FF] p-5 flex justify-between w-full'>
+    <div className='bg-[#001819] border-2 border-[#00F0FF] text-[#00F0FF] py-2 md:py-5 px-5 flex justify-between w-full'>
       <input
         className="w-[60%] bg-transparent border-none outline-none ring-0 text-[#00F0FF] caret-[#00F0FF] p-0 m-0"
         type="text"
-        value={value}
+        value={value ? value : "Click to generate"}
         readOnly
       />
             <img

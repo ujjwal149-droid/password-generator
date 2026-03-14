@@ -22,9 +22,9 @@ export default function PasswordRecord({ value, date, onCopy }) {
     >
       {/* Text */}
       <div className="transition-all duration-200 group-hover:translate-x-1">
-        <p className={`text-white opacity-80 transition-colors duration-200 ${copied ? '!text-[#F8EF00] !opacity-100' : ''}`}>
-          {value}
-        </p>
+        <input readOnly type='text' value={value} className={`label text-white opacity-80 transition-colors duration-200 ${copied ? '!text-[#F8EF00] !opacity-100' : ''}`}>
+          
+        </input>
         <p className="text-white opacity-80 caption">{date}</p>
       </div>
 
