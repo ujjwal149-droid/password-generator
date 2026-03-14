@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import "./App.css";
 import Checkbox from "./components/Checkbox";
 import Chip from "./components/Chip";
@@ -16,8 +16,26 @@ function App() {
   const [history, setHistory] = useState([]);
   const [password, setPassword] = useState("");
 
+  const updateHistory = useCallback((pass) => {
+    const currentDate = new Date();
+    const options = {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    };
+    const formattedDate = currentDate.toLocaleDateString(undefined, options);
+    const newRecord = { id: Date.now(), password: pass, date: formattedDate };
+    setHistory((prev) => {
+      const updated = [...prev, newRecord].slice(-5);
+      return updated;
+    });
+  }, []);
+
   // generate the password
-  const generatePassword = () => {
+  const generatePassword = useCallback(() => {
     if (
       !(
         numbersAllowed ||
@@ -45,24 +63,14 @@ function App() {
 
     setPassword(pass);
     updateHistory(pass);
-  };
-
-  const updateHistory = (pass) => {
-    const currentDate = new Date();
-    const options = {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    };
-    const formattedDate = currentDate.toLocaleDateString(undefined, options);
-    const newRecord = { id: Date.now(), password: pass, date: formattedDate };
-    setHistory((prev) => [...prev, newRecord].slice(-5));
-
-    console.log(history);
-  };
+  }, [
+    length,
+    numbersAllowed,
+    symbolsAllowed,
+    uppercaseAllowed,
+    lowercaseAllowed,
+    updateHistory,
+  ]);
 
   const copyPassword = (pass) => {
     navigator.clipboard.writeText(pass);
@@ -119,18 +127,25 @@ function App() {
             Password History
           </h2>
           <div className="flex flex-col-reverse gap-y-4 sm:gap-y-5">
-            {history.length && <p onClick={() => setHistory([])} className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
-              Clear history
-            </p>}
-            {!history.length && <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
-              No data
-            </p>}
+            {history.length && (
+              <p
+                onClick={() => setHistory([])}
+                className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2"
+              >
+                Clear history
+              </p>
+            )}
+            {!history.length && (
+              <p className="text-[#F8EF00] text-left cursor-pointer hover:opacity-70 transition-opacity mt-2">
+                No data
+              </p>
+            )}
             {history.map((record) => (
               <PasswordRecord
                 key={record.id}
                 value={record.password}
                 date={record.date}
-                onCopy={copyPassword(record.password)}
+                onCopy={() => copyPassword(record.password)}
               />
             ))}
           </div>
